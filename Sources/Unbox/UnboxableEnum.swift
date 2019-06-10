@@ -12,6 +12,6 @@ public protocol UnboxableEnum: RawRepresentable, UnboxCompatible {}
 /// Default implementation of `UnboxCompatible` for enums
 public extension UnboxableEnum {
     static func unbox(value: Any, allowInvalidCollectionElements: Bool) throws -> Self? {
-        return (value as? RawValue).map(self.init)
+        return (value as? RawValue).map({ self.init(rawValue: $0) })
     }
 }
